@@ -8,9 +8,6 @@ currentPlayer = "X"
 winner = None
 gameRunning = True
 
-# ready to play?
-
-
 
 # printing the game board
 def printBoard(board):
