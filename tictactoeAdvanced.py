@@ -1,27 +1,13 @@
-
-
-
-
-
 import random
 import os
+import time
 
 board = ['-', '-', '-',
-         '-', '-', '-',
-         '-', '-', '-']
+        '-', '-', '-',
+        '-', '-', '-']
 currentPlayer = "X"
 winner = None
-gameRunning = True
-ready = False
-
-# ready to play?
-def readyToPlay():
-    global ready
-    ready = input('Are you ready to play? Y or N')
-    if ready == 'Y':
-        return True
-    else:
-        return False
+gameRunning = None
 
 
 # printing the game board
@@ -106,21 +92,27 @@ def computer(board):
             board[position] = 'O'
             switchPlayer()
 
+#ready to start
+start = input('Are you ready to play? Y or N\n')
+if start == 'Y' or 'y':
+    gameRunning = True
+else:
+    gameRunning = False
+
+
 # game running loop
 while gameRunning:
     os.system('cls')
-    readyToPlay()
-    if ready == True:
-        continue
-    if ready == False:
-        break
     printBoard(board)
     playerInput(board)
+    os.system('cls')
+    printBoard(board)
     checkWin()
     if gameRunning == False:
-        break
+       break
     checkTie(board)
     switchPlayer()
+    time.sleep(3)
     computer(board)
     checkWin()
     checkTie(board)
